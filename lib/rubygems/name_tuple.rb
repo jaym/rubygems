@@ -52,7 +52,12 @@ class Gem::NameTuple
     when nil, 'ruby', ''
       "#{@name}-#{@version}"
     else
-      "#{@name}-#{@version}-#{@platform}"
+      p = if @platform.respond_to?(:original_arch)
+                   @platform.original_arch
+                 else
+                   @platform
+                 end
+      "#{@name}-#{@version}-#{p}"
     end.untaint
   end
 

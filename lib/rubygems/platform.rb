@@ -49,6 +49,7 @@ class Gem::Platform
   end
 
   def initialize(arch)
+    @original_arch = arch
     case arch
     when Array then
       @cpu, @os, @version = arch
@@ -108,6 +109,10 @@ class Gem::Platform
     else
       raise ArgumentError, "invalid argument #{arch.inspect}"
     end
+  end
+
+  def original_arch
+    @original_arch
   end
 
   def inspect
